@@ -1,0 +1,16 @@
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  gap: 20px;
+  padding-left: 0%;
+  width: auto;
+}
+.item {
+  display: flex;
+
+  padding: 10px;
+  flex-direction: column;
+}
