@@ -1,32 +1,31 @@
-import { FaPhoneAlt } from 'react-icons/fa';
-import { IoPerson } from 'react-icons/io5';
-import { useDispatch } from 'react-redux';
-import css from './Contact.module.css';
-import { deleteContact } from '../../redux/contacts/operations';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function Contact({ number, name, id }) {
+import { deleteContact } from '../../redux/contacts/operations';
+import { selectLoading } from '../../redux/contacts/selectors';
+
+import styles from './Contact.module.css';
+
+const Contact = ({ name, number, id }) => {
   const dispatch = useDispatch();
+  const loading = useSelector(selectLoading);
+
+  const handleDelete = () => {
+    dispatch(deleteContact(id));
+  };
 
   return (
-    <div className={css.cardContainer}>
-      <div className={css.cardBox}>
-        <div className={css.iconBox}>
-          <IoPerson className={css.icon} />
-          <p className={css.nameClient}>{name}</p>
+    <>
+      <div className={styles.card}>
+        <div className={styles.info}>
+          <p className={styles.name}>{name}</p>
+          <p className={styles.number}>{number}</p>
         </div>
-        <div className={css.iconBox}>
-          <FaPhoneAlt className={css.icon} />
-          <p className={css.namberClient}>{number}</p>
-        </div>
+        <button onClick={handleDelete} className={styles.button} type="button">
+          {loading ? '...' : ' Delete'}
+        </button>
       </div>
-      <button
-        className={css.btn}
-        onClick={() => {
-          dispatch(deleteContact(id));
-        }}
-      >
-        Delete
-      </button>
-    </div>
+    </>
   );
-}
+};
+
+export default Contact;

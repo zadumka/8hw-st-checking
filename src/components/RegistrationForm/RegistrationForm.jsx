@@ -1,56 +1,42 @@
-import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+
 import { register } from '../../redux/auth/operations';
+
 import css from './RegistrationForm.module.css';
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
-  const handleSubmit = (values, actions) => {
-    dispatch(register(values));
-    actions.resetForm();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.target;
+
+    dispatch(
+      register({
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        password: form.elements.password.value,
+      })
+    );
+
+    form.reset();
   };
+
   return (
-    <Formik
-      initialValues={{ name: '', email: '', password: '' }}
-      onSubmit={handleSubmit}
-    >
-      <Form className={css.form}>
-        <label className={css.label} htmlFor="name">
-          Username
-        </label>
-        <Field
-          className={css.input}
-          type="text"
-          id="name"
-          name="name"
-          autoComplete="username"
-        ></Field>
-
-        <label className={css.label} htmlFor="email">
-          Email
-        </label>
-        <Field
-          className={css.input}
-          type="email"
-          id="email"
-          name="email"
-          autoComplete="email"
-        ></Field>
-
-        <label className={css.label} htmlFor="password">
-          Password
-        </label>
-        <Field
-          className={css.input}
-          type="password"
-          id="password"
-          name="password"
-          autoComplete="new-password"
-        ></Field>
-        <button className={css.btn} type="submit">
-          Register
-        </button>
-      </Form>
-    </Formik>
+    <form className={css.form} onSubmit={handleSubmit} autoComplete="off">
+      <label className={css.label}>
+        Username
+        <input type="text" name="name" />
+      </label>
+      <label className={css.label}>
+        Email
+        <input type="email" name="email" />
+      </label>
+      <label className={css.label}>
+        Password
+        <input type="password" name="password" />
+      </label>
+      <button type="submit">Register</button>
+    </form>
   );
 }

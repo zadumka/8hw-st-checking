@@ -1,50 +1,32 @@
-.cardContainer {
-  width: 350px;
+.card {
   display: flex;
-  flex-direction: row;
-  gap: 20px;
-  border: 2px solid purple;
-  list-style: none;
-  justify-content: space-around;
+  gap: 32px;
   align-items: center;
+  justify-content: space-between;
+}
+
+.number {
+  text-align: start;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.name {
+  text-align: start;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.button {
+  padding: 8px 16px;
+  border: none;
   border-radius: 5px;
-  background: lavender;
-}
-.cardBox {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-}
-.nameClient {
-  line-height: 0.6;
+  background-color: rgb(252, 107, 107);
+  color: white;
   font-weight: 500;
-  color: rgb(68, 8, 166);
-  font-size: 1.3em;
-  margin-bottom: 0px;
-}
-.namberClient {
-  font-size: 1.3em;
-  line-height: 0.6;
-  color: rgb(106, 8, 176);
-  font-weight: 500;
-}
-.btn {
-  font-size: 1.3em;
-  color: rgb(66, 4, 89);
-  line-height: 0.6;
-  font-weight: 500;
-  padding: 15px;
-  border-radius: 5px;
-  border: 2px solid purple;
-  background: rgb(236, 205, 229);
-}
-.iconBox {
-  display: flex;
-  flex-direction: row;
-}
-.icon {
-  width: 2.5em;
-  height: 2.5em;
-  padding-top: 15px;
-  color: rgb(98, 4, 132);
+  width: 100px;
+
+  &:disabled {
+    background-color: grey;
+  }
 }
